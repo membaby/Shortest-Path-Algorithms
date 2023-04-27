@@ -1,7 +1,7 @@
-package main.java.com.example;
-import main.java.com.example.Dijkstra;
-import main.java.com.example.BellmanFord;
-import main.java.com.example.FloydWarshall;
+package com.example;
+import com.example.Dijkstra;
+import com.example.BellmanFord;
+import com.example.FloydWarshall;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -24,7 +24,6 @@ public class Graph {
         }
     }
 
-    // Constructor to initialize the graph
     public Graph(String filePath) {
         adjList = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
