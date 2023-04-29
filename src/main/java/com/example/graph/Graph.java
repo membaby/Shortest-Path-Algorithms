@@ -90,14 +90,8 @@ public class Graph implements IGraph {
     }
 
     @Override
-    public int[] run_dijkstra(int source){
-        int[] distances = new int[sizeTest];
-        dijkstra DijkstraSolver = new dijkstra(source, distances, adjList, graph);
-        int[] shortest_path = DijkstraSolver.get_shortest_path();
-        for (int i = 0; i < shortest_path.length; i++){
-            System.out.println(shortest_path[i]);
-        }
-        return shortest_path;
+    public void run_dijkstra(int source, int[] distances, int[] predecessors){
+        dijkstra DijkstraSolver = new dijkstra(source, distances, predecessors, adjList, graph);
     }
     
     @Override

@@ -33,7 +33,7 @@ public interface IGraph {
     public ArrayList<Integer> getNeighbors(int vertex);
 
 
-	public int[] run_dijkstra(int source);
+	public void run_dijkstra(int source, int[] distances, int[] predecessors);
 
 	public int[] run_bellman_ford(int source);
 
