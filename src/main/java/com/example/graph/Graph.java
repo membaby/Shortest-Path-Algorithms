@@ -47,7 +47,7 @@ public class Graph implements IGraph {
 
                 lineNum++;
             }
-
+            
             if (lineNum - 1 != numEdges) {
                 throw new IOException("Number of edges in the file does not match the given value.");
             }
@@ -89,13 +89,13 @@ public class Graph implements IGraph {
     }
 
     @Override
-    public ArrayList<Integer> run_dijkstra(int source){
+    public int[] run_dijkstra(int source){
         int[] distances = new int[sizeTest];
         dijkstra DijkstraSolver = new dijkstra(source, distances, adjList, graph);
-        ArrayList<Integer> shortest_path = DijkstraSolver.get_shortest_path();
-        for (int i = 0; i < shortest_path.size(); i++){
-            System.out.println(shortest_path.get(i));
-        }
+        int[] shortest_path = DijkstraSolver.get_shortest_path();
+        // for (int i = 0; i < shortest_path.length; i++){
+        //     System.out.println(shortest_path[i]);
+        // }
         return shortest_path;
     }
     
