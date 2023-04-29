@@ -7,6 +7,7 @@ import java.util.Arrays;
 public class bellmanford {
 
     private int[] final_distances;
+    private boolean negative_cycle = false;
 
     public bellmanford(final int source, int[] distances, final ArrayList<ArrayList<Node>> adjList, final Integer[][] graph, final ArrayList<Edge> edgeList){
         final_distances = new int[distances.length];
@@ -42,6 +43,17 @@ public class bellmanford {
             }
         }
         final_distances = distances;
+
+        //return if there is a negative cycle
+        for (int i = 0; i < n; i++) {
+            if (distances[i] == Integer.MIN_VALUE) {
+                negative_cycle = true;
+            }
+        }
+    }
+
+    public boolean get_negative_cycle(){
+        return negative_cycle;
     }
 
     public int[] get_shortest_path() {
