@@ -9,13 +9,6 @@ public class FloydWarshall {
     private int[][] predecessors;//the predecessors matrix with the appropriate values to reconstruct the paths
     private boolean Ncycle = false;//checks the presence of the negative cycle
     private boolean run = false;//checks if the floyd_warshall has been run
-    private List<Object> sol = new ArrayList <Object>();
-    /*
-    sol contains:
-    0 -> all_shortest_paths
-    1 -> predecessors
-    2 -> Ncycle
-    */
 
     public FloydWarshall(Integer[][] graph){
         num_v = graph.length;
@@ -60,9 +53,6 @@ public class FloydWarshall {
             }
         }
         run = true;
-        sol.add(all_shortest_paths);
-        sol.add(predecessors);
-        sol.add(Ncycle);
         c = all_shortest_paths;
         p = predecessors;
         return Ncycle;
