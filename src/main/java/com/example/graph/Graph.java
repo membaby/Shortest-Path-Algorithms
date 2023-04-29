@@ -29,6 +29,7 @@ public class Graph implements IGraph {
                     graph = new Integer[numVertices][numVertices];
                     numEdges = Integer.parseInt(tokens[1]);
                     sizeTest = numVertices;
+                    size = numVertices;
                     for (int i = 0; i < numEdges; i++) {
                         adjList.add(new ArrayList<Node>());
                     }
