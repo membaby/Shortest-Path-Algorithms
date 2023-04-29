@@ -102,7 +102,7 @@ public class Graph implements IGraph {
     
     @Override
     public int[] run_bellman_ford(int source){
-        int[] distances = new int[sizeTest];
+        int[] distances = new int[adjList];
         bellmanford BellmanFordSolver = new bellmanford(source, distances, adjList, graph, edgeList);
         int[] shortest_path = BellmanFordSolver.get_shortest_path();
         for (int i = 0; i < shortest_path.length; i++){

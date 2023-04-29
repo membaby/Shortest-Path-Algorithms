@@ -15,15 +15,11 @@ import com.example.graph.IGraph;
 
 public class DijkstraTest {
 
-	IGraph graph;
-	@Before
-	public void setUp() throws Exception {
-		graph = new Graph();
-	}
-	
+
 	@Test
 	public void edge_traversal_test1()
 	{
+		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph1.txt");
 		int[] result = graph.run_dijkstra(0);
 		assertEquals(0, result[0]);
@@ -37,10 +33,10 @@ public class DijkstraTest {
 	public void edge_traversal_test2()
 	{
 		IGraph graph = new Graph();
-		graph.loadGraphFromFile("TestGraph/graph1.txt");
+		graph.loadGraphFromFile("TestGraphs/graph1.txt");
 		int[] result = graph.run_dijkstra(1);
 		assertEquals(Integer.MAX_VALUE, result[0]);
-		assertEquals(Integer.MAX_VALUE, result[1]);
+		assertEquals(0, result[1]);
 		assertEquals(Integer.MAX_VALUE, result[2]);
 		assertEquals(Integer.MAX_VALUE, result[3]);
 		assertEquals(Integer.MAX_VALUE, result[4]);
@@ -51,7 +47,7 @@ public class DijkstraTest {
 	public void shortest_path_test()
 	{
 		IGraph graph = new Graph();
-		graph.loadGraphFromFile("TestGraph/graph2.txt");
+		graph.loadGraphFromFile("TestGraphs/graph2.txt");
 		int[] result = graph.run_dijkstra(0);
 		assertEquals(4, result[2]);
 	}
