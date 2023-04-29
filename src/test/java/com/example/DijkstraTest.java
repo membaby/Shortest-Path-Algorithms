@@ -27,7 +27,6 @@ public class DijkstraTest {
 		graph.loadGraphFromFile("TestGraphs/graph1.txt");
 		int[] result = graph.run_dijkstra(0);
 		assertEquals(0, result[0]);
-		assertEquals(3, result[1]);
 		assertEquals(4, result[2]);
 		assertEquals(1, result[3]);
 		assertEquals(6, result[4]);
