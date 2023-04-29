@@ -1,6 +1,5 @@
 package com.example.graph;
 import java.util.ArrayList;
-import java.util.List;
 
 // The Interface IGraph is implemented by Graph.java
 public interface IGraph {

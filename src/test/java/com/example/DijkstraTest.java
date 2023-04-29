@@ -84,6 +84,15 @@ public class DijkstraTest {
 	public void loops_test_2()
 	{
 		IGraph graph = new Graph();
+		graph.loadGraphFromFile("TestGraphs/graph5.txt");
+		int[] result = graph.run_dijkstra(0);
+		//Check path to node 1 and 2 doesn't include loops. Currently can't do it because djikstra doesn't return paths.
+	}
+
+	@Test
+	public void disconnected_graph_test()
+	{
+		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph4.txt");
 		int[] result = graph.run_dijkstra(0);
 		assertEquals(Integer.MAX_VALUE, result[4]);
