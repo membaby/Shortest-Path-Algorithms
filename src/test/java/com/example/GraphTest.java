@@ -35,6 +35,6 @@ public class GraphTest {
 		assertTrue(contains);
 		contains = vertices.contains(5);
 		assertTrue(contains);
-		
+		//Add edge assertions
 	}
 }

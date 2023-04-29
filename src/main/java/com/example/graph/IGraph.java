@@ -33,8 +33,8 @@ public interface IGraph {
     public ArrayList<Integer> getNeighbors(int vertex);
 
 
-	public ArrayList<Integer> run_dijkstra();
+	public ArrayList<Integer> run_dijkstra(int source);
 
-	public int[] run_bellman_ford();
+	public int[] run_bellman_ford(int source);
 
 }

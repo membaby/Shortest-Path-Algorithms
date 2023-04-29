@@ -89,9 +89,9 @@ public class Graph implements IGraph {
     }
 
     @Override
-    public ArrayList<Integer> run_dijkstra(){
+    public ArrayList<Integer> run_dijkstra(int source){
         int[] distances = new int[sizeTest];
-        dijkstra DijkstraSolver = new dijkstra(0, distances, adjList, graph);
+        dijkstra DijkstraSolver = new dijkstra(source, distances, adjList, graph);
         ArrayList<Integer> shortest_path = DijkstraSolver.get_shortest_path();
         for (int i = 0; i < shortest_path.size(); i++){
             System.out.println(shortest_path.get(i));
@@ -100,9 +100,9 @@ public class Graph implements IGraph {
     }
     
     @Override
-    public int[] run_bellman_ford(){
+    public int[] run_bellman_ford(int source){
         int[] distances = new int[sizeTest];
-        bellmanford BellmanFordSolver = new bellmanford(0, distances, adjList, graph, edgeList);
+        bellmanford BellmanFordSolver = new bellmanford(source, distances, adjList, graph, edgeList);
         int[] shortest_path = BellmanFordSolver.get_shortest_path();
         for (int i = 0; i < shortest_path.length; i++){
             System.out.println(shortest_path[i]);

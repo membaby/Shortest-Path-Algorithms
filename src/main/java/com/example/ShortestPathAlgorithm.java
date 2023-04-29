@@ -12,11 +12,11 @@ public class ShortestPathAlgorithm {
         System.out.println("Status: Graph Loaded. (Size: " + graph.size() + ")");
 
         System.out.println("Status: Running Dijkstra's Algorithm");
-        graph.run_dijkstra();
+        // graph.run_dijkstra();
         System.out.println("Status: Dijkstra's Algorithm Completed");
 
         System.out.println("Status: Running Bellman-Ford Algorithm");
-        graph.run_bellman_ford();
+        // graph.run_bellman_ford();
         System.out.println("Status: Bellman-Ford Algorithm Completed");
 
         System.out.println("Status: Running Floyd-Warshall Algorithm");
