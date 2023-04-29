@@ -12,7 +12,7 @@ public class dijkstra {
 
     public dijkstra(final int source, final int[] distances, final ArrayList<ArrayList<Node>> adjList, final Integer[][] graph){
         ProcessedOrder = new ArrayList<Integer>();
-        Arrays.fill(distances, Integer.MAX_VALUE / 2);
+        Arrays.fill(distances, Integer.MAX_VALUE);
         PriorityQueue<Node> queue = new PriorityQueue<Node>();
         distances[source] = 0;
         queue.add(new Node(source, 0));
