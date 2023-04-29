@@ -16,14 +16,14 @@ public class DijkstraTest {
 	{
 		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph1.txt");
-		int[] distances = new int[graph.size()];
+		double[] distances = new double[graph.size()];
 		int[] predecessors = new int[graph.size()];
 		graph.run_dijkstra(0, distances, predecessors);
-		assertEquals(0, distances[0]);
-		assertEquals(4, distances[2]);
-		assertEquals(1, distances[3]);
-		assertEquals(6, distances[4]);
-		assertEquals(2, distances[5]);
+		assertEquals(0, Double.valueOf(distances[0]).intValue());
+		assertEquals(4, Double.valueOf(distances[2]).intValue());
+		assertEquals(1, Double.valueOf(distances[3]).intValue());
+		assertEquals(6, Double.valueOf(distances[4]).intValue());
+		assertEquals(2, Double.valueOf(distances[5]).intValue());
 	}
 	
 	@Test
@@ -31,15 +31,15 @@ public class DijkstraTest {
 	{
 		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph1.txt");
-		int[] distances = new int[graph.size()];
+		double[] distances = new double[graph.size()];
 		int[] predecessors = new int[graph.size()];
 		graph.run_dijkstra(1, distances, predecessors);
-		assertEquals(Integer.MAX_VALUE, distances[0]);
-		assertEquals(0, distances[1]);
-		assertEquals(Integer.MAX_VALUE, distances[2]);
-		assertEquals(Integer.MAX_VALUE, distances[3]);
-		assertEquals(Integer.MAX_VALUE, distances[4]);
-		assertEquals(Integer.MAX_VALUE, distances[5]);
+		assertEquals(Integer.MAX_VALUE, Double.valueOf(distances[0]).intValue());
+		assertEquals(0, Double.valueOf(distances[1]).intValue());
+		assertEquals(Integer.MAX_VALUE, Double.valueOf(distances[2]).intValue());
+		assertEquals(Integer.MAX_VALUE, Double.valueOf(distances[3]).intValue());
+		assertEquals(Integer.MAX_VALUE, Double.valueOf(distances[4]).intValue());
+		assertEquals(Integer.MAX_VALUE, Double.valueOf(distances[5]).intValue());
 	}
 
 	@Test
@@ -47,10 +47,10 @@ public class DijkstraTest {
 	{
 		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph2.txt");
-		int[] distances = new int[graph.size()];
+		double[] distances = new double[graph.size()];
 		int[] predecessors = new int[graph.size()];
 		graph.run_dijkstra(1, distances, predecessors);
-		assertEquals(Integer.MAX_VALUE, distances[0]);
+		assertEquals(Integer.MAX_VALUE, Double.valueOf(distances[0]).intValue());
 	}
 
 	@Test
@@ -58,10 +58,10 @@ public class DijkstraTest {
 	{
 		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph2.txt");
-		int[] distances = new int[graph.size()];
+		double[] distances = new double[graph.size()];
 		int[] predecessors = new int[graph.size()];
 		graph.run_dijkstra(0, distances, predecessors);
-		assertEquals(4, distances[2]);
+		assertEquals(4, Double.valueOf(distances[2]).intValue());
 	}
 
 	@Test
@@ -69,10 +69,10 @@ public class DijkstraTest {
 	{
 		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph2.txt");
-		int[] distances = new int[graph.size()];
+		double[] distances = new double[graph.size()];
 		int[] predecessors = new int[graph.size()];
 		graph.run_dijkstra(0, distances, predecessors);
-		assertEquals(24, distances[3]);
+		assertEquals(24, Double.valueOf(distances[3]).intValue());
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class DijkstraTest {
 	{
 		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph3.txt");
-		int[] distances = new int[graph.size()];
+		double[] distances = new double[graph.size()];
 		int[] predecessors = new int[graph.size()];
 		graph.run_dijkstra(0, distances, predecessors);
 		//Check path to node 1 and 2 doesn't include loops. Currently can't do it because djikstra doesn't return paths.
@@ -91,7 +91,7 @@ public class DijkstraTest {
 	{
 		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph5.txt");
-		int[] distances = new int[graph.size()];
+		double[] distances = new double[graph.size()];
 		int[] predecessors = new int[graph.size()];
 		graph.run_dijkstra(0, distances, predecessors);
 		//Check path to node 1 and 2 doesn't include loops. Currently can't do it because djikstra doesn't return paths.
@@ -102,12 +102,12 @@ public class DijkstraTest {
 	{
 		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph4.txt");
-		int[] distances = new int[graph.size()];
+		double[] distances = new double[graph.size()];
 		int[] predecessors = new int[graph.size()];
 		graph.run_dijkstra(0, distances, predecessors);
-		assertEquals(Integer.MAX_VALUE, distances[4]);
-		assertEquals(Integer.MAX_VALUE, distances[5]);
-		assertEquals(Integer.MAX_VALUE, distances[6]);
+		assertEquals(Integer.MAX_VALUE, Double.valueOf(distances[4]).intValue());
+		assertEquals(Integer.MAX_VALUE, Double.valueOf(distances[5]).intValue());
+		assertEquals(Integer.MAX_VALUE, Double.valueOf(distances[6]).intValue());
 		//Verify paths to all nodes
 	}
 

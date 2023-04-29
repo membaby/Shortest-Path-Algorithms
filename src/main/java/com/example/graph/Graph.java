@@ -90,7 +90,7 @@ public class Graph implements IGraph {
     }
 
     @Override
-    public void run_dijkstra(int source, int[] distances, int[] predecessors){
+    public void run_dijkstra(int source, double[] distances, int[] predecessors){
         dijkstra DijkstraSolver = new dijkstra(source, distances, predecessors, adjList, graph);
     }
     
