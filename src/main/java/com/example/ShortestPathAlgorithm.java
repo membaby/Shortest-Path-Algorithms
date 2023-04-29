@@ -8,11 +8,11 @@ public class ShortestPathAlgorithm {
         System.out.println("Status: Loading Graph");
 
         Graph graph = new Graph();
-        graph.loadGraphFromFile("D:/Freelancer/Projects/Current/Shortest-Path-Algorithms/src/main/java/com/example/data/graph1.txt");        
+        graph.loadGraphFromFile("D:/Freelancer/Projects/Current/Shortest-Path-Algorithms/TestGraphs/graph2.txt");        
         System.out.println("Status: Graph Loaded. (Size: " + graph.size() + ")");
 
         System.out.println("Status: Running Dijkstra's Algorithm");
-        // graph.run_dijkstra();
+        // graph.run_dijkstra(0);
         System.out.println("Status: Dijkstra's Algorithm Completed");
 
         System.out.println("Status: Running Bellman-Ford Algorithm");
