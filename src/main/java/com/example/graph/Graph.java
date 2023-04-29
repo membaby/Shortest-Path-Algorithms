@@ -109,4 +109,12 @@ public class Graph implements IGraph {
         }
         return shortest_path;
     }
+    @Override
+    public boolean run_floyd_warshall(){
+        Integer[][] c = new Integer[size][size];
+        int[][] p = new int[size][size];
+        FloydWarshall floydWarshall = new FloydWarshall(graph);
+        boolean Ncycles = floydWarshall.floyd_warshall(c,p);
+        return Ncycles;
+    }
 }

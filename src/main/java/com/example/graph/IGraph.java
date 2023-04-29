@@ -1,5 +1,6 @@
 package com.example.graph;
 import java.util.ArrayList;
+import java.util.List;
 
 // The Interface IGraph is implemented by Graph.java
 public interface IGraph {
@@ -36,5 +37,7 @@ public interface IGraph {
 	public ArrayList<Integer> run_dijkstra(int source);
 
 	public int[] run_bellman_ford(int source);
+
+    public boolean run_floyd_warshall();
 
 }
