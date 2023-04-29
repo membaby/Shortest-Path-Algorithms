@@ -32,4 +32,9 @@ public interface IGraph {
      */
     public ArrayList<Integer> getNeighbors(int vertex);
 
+
+	public ArrayList<Integer> run_dijkstra();
+
+	public int[] run_bellman_ford();
+
 }

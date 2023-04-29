@@ -87,7 +87,7 @@ public class Graph implements IGraph {
         return neighbors;
     }
 
-    // @Override
+    @Override
     public ArrayList<Integer> run_dijkstra(){
         int[] distances = new int[sizeTest];
         dijkstra DijkstraSolver = new dijkstra(0, distances, adjList, graph);
@@ -98,7 +98,7 @@ public class Graph implements IGraph {
         return shortest_path;
     }
     
-    // @Override
+    @Override
     public int[] run_bellman_ford(){
         int[] distances = new int[sizeTest];
         bellmanford BellmanFordSolver = new bellmanford(0, distances, adjList, graph, edgeList);
