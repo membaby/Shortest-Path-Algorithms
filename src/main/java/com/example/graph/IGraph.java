@@ -37,6 +37,6 @@ public interface IGraph {
 
 	public int[] run_bellman_ford(int source);
 
-    public boolean run_floyd_warshall();
+    public boolean run_floyd_warshall(Integer[][] costs, int[][] predecessors);
 
 }

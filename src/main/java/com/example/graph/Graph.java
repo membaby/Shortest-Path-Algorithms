@@ -105,7 +105,7 @@ public class Graph implements IGraph {
         return shortest_path;
     }
     @Override
-    public boolean run_floyd_warshall(){
+    public boolean run_floyd_warshall(Integer[][] costs, int[][] predecessors){
         Integer[][] c = new Integer[size][size];
         int[][] p = new int[size][size];
         FloydWarshall floydWarshall = new FloydWarshall(graph);
