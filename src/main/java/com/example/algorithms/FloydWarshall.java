@@ -15,7 +15,10 @@ public class FloydWarshall {
         //preparing both the predecessors and all_shortest_paths matrices
         for (int i = 0; i <num_v ; i++) {
             for (int j = 0; j < num_v; j++) {
-                if (i != j && graph[i][j] == 0){
+                if(i == j){
+                    graph[i][j] = 0;
+                }
+                if ((i != j && graph[i][j] == 0)||graph[i][j] == null){
                     graph[i][j] = Integer.MAX_VALUE;
                 }
                 if (graph[i][j] == Integer.MAX_VALUE) {
