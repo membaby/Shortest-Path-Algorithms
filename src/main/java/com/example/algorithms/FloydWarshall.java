@@ -18,10 +18,10 @@ public class FloydWarshall {
                 if(i == j){
                     graph[i][j] = 0;
                 }
-                if ((i != j && graph[i][j] == 0)||graph[i][j] == null){
+                if (graph[i][j] == null){
                     graph[i][j] = Integer.MAX_VALUE;
                 }
-                if (graph[i][j] == Integer.MAX_VALUE) {
+                if (graph[i][j] == Integer.MAX_VALUE ) {
                     predecessors[i][j] = -1;
                 }
                 else {
@@ -42,7 +42,7 @@ public class FloydWarshall {
                     }
                     if (all_shortest_paths[i][j] > all_shortest_paths[i][k] + all_shortest_paths[k][j]) {
                         all_shortest_paths[i][j] = all_shortest_paths[i][k] + all_shortest_paths[k][j];
-                        predecessors[i][j] = predecessors[k][j];
+                        predecessors[i][j] = predecessors[i][k];
                     }
                 }
             }
@@ -55,8 +55,12 @@ public class FloydWarshall {
             }
         }
         run = true;
-        c = all_shortest_paths;
-        p = predecessors;
+        for (int i = 0; i < num_v; i++) {
+            for (int j = 0; j < num_v; j++) {
+                c[i][j] = all_shortest_paths[i][j];
+                p[i][j] = predecessors[i][j];
+            }
+        }
         return Ncycle;
     }
 

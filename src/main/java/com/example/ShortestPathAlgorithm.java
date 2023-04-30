@@ -14,8 +14,9 @@ public class ShortestPathAlgorithm {
         Graph graph = new Graph();
         graph.loadGraphFromFile(scanner.nextLine());
         System.out.println("Status: Graph Loaded. (Size: " + graph.size() + ")");
+
         
-        // Run Algorithms
+       // Run Algorithms
         System.out.println("Choice 1: Find shortest path from source node to all other nodes.");
         System.out.println("Choice 2: Find shortest path between all pairs of nodes.");
         System.out.println("Choice 3: Check if graph contains a negative cycle.");
