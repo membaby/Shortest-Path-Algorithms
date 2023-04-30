@@ -127,17 +127,43 @@ public class WarshallTest {
 		assertEquals(0, costs[2][2].intValue());
 		assertEquals(0, costs[3][3].intValue());
 		assertEquals(3, costs[0][1].intValue());
-		assertEquals(3, costs[0][2].intValue());
-		assertEquals(3, costs[0][3].intValue());
-		assertEquals(3, costs[1][1].intValue());
-		assertEquals(3, costs[1][1].intValue());
-		assertEquals(3, costs[1][1].intValue());
+		assertEquals(0, costs[0][2].intValue());
+		assertEquals(1, costs[0][3].intValue());
+		assertEquals(-3, costs[1][0].intValue());
+		assertEquals(-3, costs[1][2].intValue());
+		assertEquals(-2, costs[1][3].intValue());
+		assertEquals(0, costs[2][0].intValue());
 		assertEquals(3, costs[2][1].intValue());
-		assertEquals(3, costs[2][2].intValue());
-		assertEquals(3, costs[2][3].intValue());
-		assertEquals(3, costs[3][1].intValue());
-		assertEquals(3, costs[3][1].intValue());
-		assertEquals(3, costs[3][1].intValue());
+		assertEquals(1, costs[2][3].intValue());
+		assertEquals(-1, costs[3][0].intValue());
+		assertEquals(2, costs[3][1].intValue());
+		assertEquals(-1, costs[3][2].intValue());
+		//Parent assertions
+		assertEquals(0, preds[0][1]);
+		//2 possible paths from 0 to 2
+		boolean expected;
+		expected = preds[0][2] == 1 || preds[0][2] == 3;
+		assertTrue(expected);
+		
+		assertEquals(1, preds[0][3]);
+		// //2 possible paths from 1 to 0
+		// expected = preds[1][0] == 2
+		// assertTrue(expected);
+		assertEquals(2, preds[1][0]);
+		
+		//2 possible paths from 1 to 2
+		// assertEquals(, preds[1][2]);
+		expected = preds[1][2] == 1 || preds[1][2] == 3;
+		assertTrue(expected);
+		
+		assertEquals(1, preds[1][3]);
+		assertEquals(2, preds[2][0]);
+		assertEquals(0, preds[2][1]);
+		assertEquals(1, preds[2][3]);
+		assertEquals(2, preds[3][0]);
+		assertEquals(0, preds[3][1]);
+		assertEquals(3, preds[3][2]);
+
 	}
 
 
