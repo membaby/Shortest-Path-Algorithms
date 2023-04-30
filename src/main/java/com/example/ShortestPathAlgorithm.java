@@ -64,5 +64,6 @@ public class ShortestPathAlgorithm {
         // System.out.println("Status: Floyd-Warshall Algorithm Completed");
 
         System.out.println("Status: Program Completed");
+		scanner.close();
     }
 }
