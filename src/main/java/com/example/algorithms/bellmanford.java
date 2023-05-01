@@ -33,13 +33,13 @@ public class bellmanford {
         for (int u = 0; u < edgeList.size(); u++) {
             Edge edge = edgeList.get(u);
             if (distances[edge.getFrom()] != Double.POSITIVE_INFINITY && distances[edge.getFrom()] + edge.getWeight() < distances[edge.getTo()]){
-                distances[edge.getTo()] = Integer.MIN_VALUE;
+                distances[edge.getTo()] = Double.NEGATIVE_INFINITY;
             }
         }
 
         //return if there is a negative cycle
         for (int i = 0; i < n; i++) {
-            if (distances[i] == Integer.MIN_VALUE) {
+            if (distances[i] == Double.NEGATIVE_INFINITY) {
                 negative_cycle = true;
             }
         }
