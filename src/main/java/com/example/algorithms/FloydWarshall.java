@@ -61,7 +61,7 @@ public class FloydWarshall {
                 p[i][j] = predecessors[i][j];
             }
         }
-        return Ncycle;
+        return !Ncycle;
     }
 
     //calculates the path from u to e with time complexity(v)

@@ -47,27 +47,27 @@ public class WarshallTest {
 		assertEquals(3, costs[4][2].intValue());
 		assertEquals(2, costs[4][3].intValue());
 		//Parent assertions
-		assertEquals(0, preds[0][1]);
-		assertEquals(0, preds[0][2]);
+		assertEquals(1, preds[0][1]);
+		assertEquals(2, preds[0][2]);
 		assertEquals(1, preds[0][3]);
 		assertEquals(2, preds[0][4]);
 		assertEquals(3, preds[1][0]);
 		assertEquals(3, preds[1][2]);
-		assertEquals(1, preds[1][3]);
-		assertEquals(2, preds[1][4]);
-		assertEquals(3, preds[2][0]);
-		assertEquals(2, preds[2][1]);
+		assertEquals(3, preds[1][3]);
+		assertEquals(3, preds[1][4]);
+		assertEquals(1, preds[2][0]);
+		assertEquals(1, preds[2][1]);
 		assertEquals(1, preds[2][3]);
-		assertEquals(2, preds[2][4]);
-		assertEquals(3, preds[3][0]);
+		assertEquals(4, preds[2][4]);
+		assertEquals(0, preds[3][0]);
 		//Two possible paths from 3 to 1
 		boolean expected = preds[3][1] == 0 || preds[3][1] == 2;
 		assertTrue(expected);
-		assertEquals(3, preds[3][2]);
+		assertEquals(2, preds[3][2]);
 		assertEquals(2, preds[3][4]);
-		assertEquals(3, preds[4][0]);
-		assertEquals(4, preds[4][1]);
-		assertEquals(3, preds[4][2]);
+		assertEquals(1, preds[4][0]);
+		assertEquals(1, preds[4][1]);
+		assertEquals(1, preds[4][2]);
 		assertEquals(1, preds[4][3]);
 	}
 
@@ -138,32 +138,27 @@ public class WarshallTest {
 		assertEquals(-1, costs[3][0].intValue());
 		assertEquals(2, costs[3][1].intValue());
 		assertEquals(-1, costs[3][2].intValue());
+		
 		//Parent assertions
-		assertEquals(0, preds[0][1]);
-		//2 possible paths from 0 to 2
-		boolean expected;
-		expected = preds[0][2] == 1 || preds[0][2] == 3;
-		assertTrue(expected);
+		assertEquals(1, preds[0][1]);
+		assertEquals(1, preds[0][2]);
+		
 		
 		assertEquals(1, preds[0][3]);
-		// //2 possible paths from 1 to 0
-		// expected = preds[1][0] == 2
-		// assertTrue(expected);
-		assertEquals(2, preds[1][0]);
-		
+		boolean expected;
+		expected = preds[1][0] == 2 || preds[1][0] == 3;
+		assertTrue(expected);
 		//2 possible paths from 1 to 2
-		// assertEquals(, preds[1][2]);
-		expected = preds[1][2] == 1 || preds[1][2] == 3;
+		expected = preds[1][2] == 2 || preds[1][2] == 3;
 		assertTrue(expected);
 		
-		assertEquals(1, preds[1][3]);
-		assertEquals(2, preds[2][0]);
+		assertEquals(3, preds[1][3]);
+		assertEquals(0, preds[2][0]);
 		assertEquals(0, preds[2][1]);
-		assertEquals(1, preds[2][3]);
+		assertEquals(0, preds[2][3]);
 		assertEquals(2, preds[3][0]);
-		assertEquals(0, preds[3][1]);
-		assertEquals(3, preds[3][2]);
-
+		assertEquals(2, preds[3][1]);
+		assertEquals(2, preds[3][2]);
 	}
 
 
