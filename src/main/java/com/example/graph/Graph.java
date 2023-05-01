@@ -95,14 +95,9 @@ public class Graph implements IGraph {
     }
     
     @Override
-    public int[] run_bellman_ford(int source){
-        int[] distances = new int[adjList.size()];
-        bellmanford BellmanFordSolver = new bellmanford(source, distances, adjList, graph, edgeList);
-        int[] shortest_path = BellmanFordSolver.get_shortest_path();
-        for (int i = 0; i < shortest_path.length; i++){
-            System.out.println(shortest_path[i]);
-        }
-        return shortest_path;
+    public boolean run_bellman_ford(int source, double[] distances, int[] predecessors){
+        bellmanford BellmanFordSolver = new bellmanford(source, distances, predecessors, adjList, graph, edgeList);
+        return BellmanFordSolver.getNegativeCycle();
     }
     @Override
     public boolean run_floyd_warshall(Integer[][] costs, int[][] predecessors){

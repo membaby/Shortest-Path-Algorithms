@@ -35,7 +35,7 @@ public interface IGraph {
 
 	public void run_dijkstra(int source, double[] distances, int[] predecessors);
 
-	public int[] run_bellman_ford(int source);
+	public boolean run_bellman_ford(int source, double[] distances, int[] predecessors);
 
     public boolean run_floyd_warshall(Integer[][] costs, int[][] predecessors);
 

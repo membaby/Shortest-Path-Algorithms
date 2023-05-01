@@ -1,6 +1,8 @@
 package com.example;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import org.junit.Test;
 
 import com.example.graph.Graph;
@@ -14,54 +16,70 @@ public class BellmanTest {
 	{
 		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph1.txt");
-		int[] result = graph.run_bellman_ford(0);
-		assertEquals(0, result[0]);
-		assertEquals(4, result[2]);
-		assertEquals(1, result[3]);
-		assertEquals(6, result[4]);
-		assertEquals(2, result[5]);
+		double[] distances = new double[graph.size()];
+		int[] predecessors = new int[graph.size()];
+
+		boolean result = graph.run_bellman_ford(0, distances, predecessors);
+		assertEquals(0, (int)distances[0]);
+		assertEquals(4, (int)distances[2]);
+		assertEquals(1, (int)distances[3]);
+		assertEquals(6, (int)distances[4]);
+		assertEquals(2, (int)distances[5]);
+		// assertTrue(result);
+
 	}
 	
 	@Test
 	public void edge_traversal_test_2()
 	{
 		IGraph graph = new Graph();
-		graph.loadGraphFromFile("TestGraph/graph1.txt");
-		
-		int[] result = graph.run_bellman_ford(1);
-		assertEquals(Integer.MAX_VALUE, result[0]);
-		assertEquals(0, result[1]);
-		assertEquals(Integer.MAX_VALUE, result[2]);
-		assertEquals(Integer.MAX_VALUE, result[3]);
-		assertEquals(Integer.MAX_VALUE, result[4]);
-		assertEquals(Integer.MAX_VALUE, result[5]);
+		graph.loadGraphFromFile("TestGraphs/graph1.txt");
+		double[] distances = new double[graph.size()];
+		int[] predecessors = new int[graph.size()];
+
+		boolean result = graph.run_bellman_ford(1, distances, predecessors);
+		assertEquals(Integer.MAX_VALUE, (int) distances[0]);
+		assertEquals(0, 				(int) distances[1]);
+		assertEquals(Integer.MAX_VALUE, (int) distances[2]);
+		assertEquals(Integer.MAX_VALUE, (int) distances[3]);
+		assertEquals(Integer.MAX_VALUE, (int) distances[4]);
+		assertEquals(Integer.MAX_VALUE, (int) distances[5]);
 	}
 
 	@Test
 	public void edge_traversal_test_3()
 	{
 		IGraph graph = new Graph();
-		graph.loadGraphFromFile("TestGraph/graph2.txt");
-		int[] result = graph.run_bellman_ford(1);
-		assertEquals(Integer.MAX_VALUE, result[0]);
+		graph.loadGraphFromFile("TestGraphs/graph2.txt");
+		double[] distances = new double[graph.size()];
+		int[] predecessors = new int[graph.size()];
+
+		boolean result = graph.run_bellman_ford(1, distances, predecessors);
+		assertEquals(Integer.MAX_VALUE, (int) distances[0]);
 	}
 
 	@Test
 	public void shortest_path_test_1()
 	{
 		IGraph graph = new Graph();
-		graph.loadGraphFromFile("TestGraph/graph2.txt");
-		int[] result = graph.run_bellman_ford(0);
-		assertEquals(4, result[2]);
+		graph.loadGraphFromFile("TestGraphs/graph2.txt");
+		double[] distances = new double[graph.size()];
+		int[] predecessors = new int[graph.size()];
+
+		boolean result = graph.run_bellman_ford(0, distances, predecessors);
+		assertEquals(4, (int) distances[2]);
 	}
 
 	@Test
 	public void shortest_path_test_2()
 	{
 		IGraph graph = new Graph();
-		graph.loadGraphFromFile("TestGraph/graph2.txt");
-		int[] result = graph.run_bellman_ford(0);
-		assertEquals(24, result[3]);
+		graph.loadGraphFromFile("TestGraphs/graph2.txt");
+		double[] distances = new double[graph.size()];
+		int[] predecessors = new int[graph.size()];
+
+		boolean result = graph.run_bellman_ford(0, distances, predecessors);
+		assertEquals(24, (int) distances[3]);
 	}
 
 	@Test
@@ -69,7 +87,10 @@ public class BellmanTest {
 	{
 		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph3.txt");
-		int[] result = graph.run_bellman_ford(0);
+		double[] distances = new double[graph.size()];
+		int[] predecessors = new int[graph.size()];
+		
+		boolean result = graph.run_bellman_ford(0, distances, predecessors);
 		//Check path to node 1 and 2 doesn't include loops. Currently can't do it because djikstra doesn't return paths.
 	}
 
@@ -78,7 +99,10 @@ public class BellmanTest {
 	{
 		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph5.txt");
-		int[] result = graph.run_bellman_ford(0);
+		double[] distances = new double[graph.size()];
+		int[] predecessors = new int[graph.size()];
+		
+		boolean result = graph.run_bellman_ford(0, distances, predecessors);
 		//Check path to node 1 and 2 doesn't include loops. Currently can't do it because djikstra doesn't return paths.
 	}
 
@@ -87,10 +111,13 @@ public class BellmanTest {
 	{
 		IGraph graph = new Graph();
 		graph.loadGraphFromFile("TestGraphs/graph4.txt");
-		int[] result = graph.run_bellman_ford(0);
-		assertEquals(Integer.MAX_VALUE, result[4]);
-		assertEquals(Integer.MAX_VALUE, result[5]);
-		assertEquals(Integer.MAX_VALUE, result[6]);
+		double[] distances = new double[graph.size()];
+		int[] predecessors = new int[graph.size()];
+		
+		boolean result = graph.run_bellman_ford(0, distances, predecessors);
+		assertEquals(Integer.MAX_VALUE, (int) distances[4]);
+		assertEquals(Integer.MAX_VALUE, (int) distances[5]);
+		assertEquals(Integer.MAX_VALUE, (int) distances[6]);
 		//Verify paths to all nodes
 	}
 }
