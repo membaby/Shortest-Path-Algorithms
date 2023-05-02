@@ -93,4 +93,37 @@ public class BellmanTest {
 		assertEquals(Integer.MAX_VALUE, result[6]);
 		//Verify paths to all nodes
 	}
+
+	@Test
+	public void negative_edge_path_test()
+	{
+		IGraph graph = new Graph();
+		graph.loadGraphFromFile("TestGraphs/graph6.txt");
+		//Remainder of test will wait until bellman is finished.
+	}
+
+	@Test
+	public void negative_loop_test_1()
+	{
+		IGraph graph = new Graph();
+		graph.loadGraphFromFile("TestGraphs/graph7.txt");
+		//Remainder of test will wait until bellman is finished. source is 0
+	}
+
+	@Test
+	public void negative_loop_test_2()
+	{
+		IGraph graph = new Graph();
+		graph.loadGraphFromFile("TestGraphs/graph7.txt");
+		//Remainder of test will wait until bellman is finished. source is 2
+	}
+	
+	@Test
+	public void negative_loop_test_3()
+	{
+		IGraph graph = new Graph();
+		graph.loadGraphFromFile("TestGraphs/graph10.txt");
+		//Remainder of test will wait until bellman is finished. source is 0
+	}
+
 }

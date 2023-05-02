@@ -13,16 +13,26 @@ public class GraphGenerator
 
 	public static void main(String[] args) 
 	{
-		generate(5000, 15);
+		generate(50, 0.75f);
 	}
 
 
-	public static void generate(int numOfNodes, int edgesPerNode)
+	public static void generate(int numOfNodes, float density)
 	{
+		int edgesPerNode = (int)((numOfNodes-1) * density);
 		HashMap<Integer, HashSet<Integer>> adjMap = new HashMap<Integer, HashSet<Integer>>(numOfNodes);
 		for (int i=0; i<numOfNodes; i++)// Creating nodes
 		{
 			adjMap.put(i, new HashSet<Integer>(edgesPerNode));
+			if (density == 1)
+			{
+				for (int j=0; j < numOfNodes; j++)
+				{
+					if (j == i) continue;
+					adjMap.get(i).add(j);
+				}
+				continue;
+			}
 			int created = 0;
 			while (created < edgesPerNode)
 			{
@@ -36,9 +46,9 @@ public class GraphGenerator
 		
 		try
 		{
-			String name = numOfNodes + "-" + edgesPerNode + ".txt";
+			String name = "TimeComparison/" + numOfNodes + "-" + density + ".txt";
 			FileWriter writer = new FileWriter(name);
-			writer.write(numOfNodes + ' ' + numOfNodes*edgesPerNode + "\n");
+			writer.write(numOfNodes + " " + numOfNodes*edgesPerNode + "\n");
 			for (int i=0; i < numOfNodes; i++)
 			{
 				for (Integer j : adjMap.get(i))
