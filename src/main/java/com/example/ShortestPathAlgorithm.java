@@ -40,7 +40,7 @@ public class ShortestPathAlgorithm {
 				msg = path_from_source_choose_algorithm();
 				break;
 				case PathSrcOpt:
-				msg = path_from_source_choose_algorithm();
+				msg = path_from_source_options();
 				break;
 				case PathAllAlgo:
 				// msg = main_menu();
@@ -49,7 +49,7 @@ public class ShortestPathAlgorithm {
 				// msg = main_menu();
 				break;
 				case NegCycle:
-				// msg = main_menu();
+				msg = find_neg_cycles();
 				break;
 				case Exit:
 				break loop;
@@ -65,7 +65,7 @@ public class ShortestPathAlgorithm {
 		Messages msg = null;
         System.out.print("Enter the path to the graph file: ");
         graph = new Graph();
-        graph.loadGraphFromFile(scn.nextLine());
+        graph.loadGraphFromFile(scn.next());
         System.out.println("Status: Graph Loaded. (Size: " + graph.size() + ")");
 		msg = Messages.Main;
 		System.out.println("\n\n");
@@ -193,19 +193,20 @@ public class ShortestPathAlgorithm {
 				break;
 				case 3:
 				msg = Messages.PathSrcOpt;
+				break;
 				case 4:
 				msg = Messages.Main;
 				break;
 			}
 			
-			System.out.println("\n\n");
 		}
+		System.out.println("\n\n");
 		return msg;
 	}
 	
 	static void path_to_node_src(int source)
 	{
-		System.out.println("Choose destination between 0 and "+ (graph.size()-1) + ": ");
+		System.out.print("Choose destination between 0 and "+ (graph.size()-1) + ": ");
 		int dest = scn.nextInt();
 		switch(chosenAlgo)
 		{
@@ -214,7 +215,7 @@ public class ShortestPathAlgorithm {
 			if (Double.isInfinite(costsArr[dest]))
 			{
 				System.out.println("No path exists.");
-				System.out.println("\n\n");
+				System.out.println("\n");
 				return;
 			}
 			break;
@@ -222,7 +223,7 @@ public class ShortestPathAlgorithm {
 			if (costsMat[source][dest] == Integer.MAX_VALUE)
 			{
 				System.out.println("No path exists.");
-				System.out.println("\n\n");
+				System.out.println("\n");
 				return;
 			}
 			break;
@@ -247,7 +248,7 @@ public class ShortestPathAlgorithm {
 			}
 		}
 		System.out.println(current);
-		System.out.println("\n\n");
+		System.out.println("\n");
 	}	
 	
 	static void cost_to_node_src(int source)
@@ -262,7 +263,7 @@ public class ShortestPathAlgorithm {
 		{
 			System.out.println(costsArr[dest]);
 		}
-		System.out.println("\n\n");
+		System.out.println("\n");
 	}	
 
 
@@ -284,7 +285,7 @@ public class ShortestPathAlgorithm {
 		System.out.println("1: Bellman-Ford");
 		System.out.println("2: Floyd-Warshall");
 		System.out.println("3: Back");
-		System.out.println("Your choice: ");
+		System.out.print("Your choice: ");
 		int choice = scn.nextInt();
 		boolean result = false;
 		switch(choice)
@@ -302,7 +303,7 @@ public class ShortestPathAlgorithm {
 			case 3:
 			return Messages.Main;
 		}
-		if (result)
+		if (!result)
 		{
 			System.out.println("Negative cycle found.");
 		}
