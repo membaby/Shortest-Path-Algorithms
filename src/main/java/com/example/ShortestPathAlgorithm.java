@@ -17,12 +17,13 @@ public class ShortestPathAlgorithm {
 	static int[] predsArr = new int[0];
 	static int[][] succMat = new int[0][0];
 	static boolean result = false;  
+	static Scanner scn;
 
 
     public static void main( String[] args )
     {
         System.out.println( "[ Shortest Path Algorithms ]" );
-
+		scn = new Scanner(System.in);
 		Messages msg = Messages.EnterGraph;
 
 		loop:
@@ -62,13 +63,11 @@ public class ShortestPathAlgorithm {
 	static Messages enter_graph_path()
 	{
 		Messages msg = null;
-		Scanner scn = new Scanner(System.in);
-        System.out.println("Enter the path to the graph file: ");
+        System.out.print("Enter the path to the graph file: ");
         graph = new Graph();
         graph.loadGraphFromFile(scn.nextLine());
         System.out.println("Status: Graph Loaded. (Size: " + graph.size() + ")");
 		msg = Messages.Main;
-		scn.close();
 		System.out.println("\n\n");
 		return msg;
 	}
@@ -76,12 +75,11 @@ public class ShortestPathAlgorithm {
 	static Messages main_menu()
 	{
 		Messages msg = null;
-		Scanner scn = new Scanner(System.in);
 		System.out.println("Choice 1: Find shortest path from source node to all other nodes.");
         System.out.println("Choice 2: Find shortest path between all pairs of nodes.");
         System.out.println("Choice 3: Check if graph contains a negative cycle.");
         System.out.println("Choice 4: Enter another graph.");
-        System.out.println("Your Choice: ");
+        System.out.print("Your Choice: ");
         int choice = scn.nextInt();
 		switch (choice)
 		{
@@ -98,7 +96,6 @@ public class ShortestPathAlgorithm {
 			msg = Messages.EnterGraph;
 			break;
 		}
-		scn.close();
 		System.out.println("\n\n");
 		return msg;
 	}
@@ -110,9 +107,8 @@ public class ShortestPathAlgorithm {
 		System.out.println("2: Bellman-Ford");
 		System.out.println("3: Floyd-Warshall");
 		System.out.println("4: Back");
-		System.out.println("Your choice: ");
+		System.out.print("Your choice: ");
 		Messages msg = null;
-		Scanner scn = new Scanner(System.in);
 		int choice = scn.nextInt();
 		switch (choice)
 		{
@@ -131,18 +127,16 @@ public class ShortestPathAlgorithm {
 			case 4:
 			msg = Messages.Main;
 		}
-		scn.close();
 		System.out.println("\n\n");
 		return msg;
 	}
 
 	static int execute_algorithm()
 	{
-		Scanner scn = new Scanner(System.in);
 		int source = -1;
 		while(true)
 		{
-			System.out.println("Choose a source between 0 and " + (graph.size()-1) + ": ");
+			System.out.print("Choose a source between 0 and " + (graph.size()-1) + ": ");
 			source = scn.nextInt();
 			if (source < 0 || source >= graph.size()) continue;
 			break;
@@ -172,13 +166,11 @@ public class ShortestPathAlgorithm {
 			graph.run_floyd_warshall(costsMat, succMat);
 			break;
 		}
-		scn.close();
 		return source;
 	}
 
 	static Messages path_from_source_options()
 	{
-		Scanner scn = new Scanner(System.in);
 		Messages msg = null;
 		//Executing the algorithm
 		int source = execute_algorithm();
@@ -189,7 +181,7 @@ public class ShortestPathAlgorithm {
 			System.out.println("2 : Show the cost of a node.");
 			System.out.println("3 : Choose another source.");
 			System.out.println("4 : Main menu.");
-			System.out.println("Your choice: ");
+			System.out.print("Your choice: ");
 			int choice = scn.nextInt();
 			switch(choice)
 			{
@@ -208,14 +200,12 @@ public class ShortestPathAlgorithm {
 			
 			System.out.println("\n\n");
 		}
-		scn.close();
 		return msg;
 	}
 	
 	static void path_to_node_src(int source)
 	{
 		System.out.println("Choose destination between 0 and "+ (graph.size()-1) + ": ");
-		Scanner scn = new Scanner(System.in);
 		int dest = scn.nextInt();
 		switch(chosenAlgo)
 		{
@@ -225,7 +215,6 @@ public class ShortestPathAlgorithm {
 			{
 				System.out.println("No path exists.");
 				System.out.println("\n\n");
-				scn.close();
 				return;
 			}
 			break;
@@ -234,7 +223,6 @@ public class ShortestPathAlgorithm {
 			{
 				System.out.println("No path exists.");
 				System.out.println("\n\n");
-				scn.close();
 				return;
 			}
 			break;
@@ -260,13 +248,11 @@ public class ShortestPathAlgorithm {
 		}
 		System.out.println(current);
 		System.out.println("\n\n");
-		scn.close();
 	}	
 	
 	static void cost_to_node_src(int source)
 	{
 		System.out.println("Choose destination between 0 and "+ (graph.size()-1) + ": ");
-		Scanner scn = new Scanner(System.in);
 		int dest = scn.nextInt();
 		if (chosenAlgo == Algorithm.Floyd)
 		{
@@ -277,7 +263,6 @@ public class ShortestPathAlgorithm {
 			System.out.println(costsArr[dest]);
 		}
 		System.out.println("\n\n");
-		scn.close();
 	}	
 
 
@@ -300,7 +285,6 @@ public class ShortestPathAlgorithm {
 		System.out.println("2: Floyd-Warshall");
 		System.out.println("3: Back");
 		System.out.println("Your choice: ");
-		Scanner scn = new Scanner(System.in);
 		int choice = scn.nextInt();
 		boolean result = false;
 		switch(choice)
@@ -316,7 +300,6 @@ public class ShortestPathAlgorithm {
 			result = graph.run_floyd_warshall(costsMat, succs);
 			break;
 			case 3:
-			scn.close();
 			return Messages.Main;
 		}
 		if (result)
@@ -328,7 +311,6 @@ public class ShortestPathAlgorithm {
 			System.out.println("No negative cycles found.");
 		}
 		System.out.println("\n\n");
-		scn.close();
 		return Messages.Main;
 	}
 }
