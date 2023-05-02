@@ -3,16 +3,13 @@ import com.example.graph.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-// int source, int[] costs, int[] parents, Map<Integer, List<Graph.Edge>> graph
 public class bellmanford {
 
-    private int[] final_distances;
     private boolean negative_cycle = false;
 
-    public bellmanford(final int source, int[] distances, final ArrayList<ArrayList<Node>> adjList, final Integer[][] graph, final ArrayList<Edge> edgeList){
-        final_distances = new int[distances.length];
+    public bellmanford(final int source, final double[] distances, final int[] predecessors, final ArrayList<ArrayList<Node>> adjList, final Integer[][] graph, final ArrayList<Edge> edgeList){
         // Initialize the costs and parents arrays
-        Arrays.fill(distances, Integer.MAX_VALUE);
+        Arrays.fill(distances, Double.POSITIVE_INFINITY);
         // Set the source vertex distance to 0
         distances[source] = 0;
         // set n to the number of vertices in the graph
@@ -20,8 +17,9 @@ public class bellmanford {
         for (int i = 0; i < n - 1; i++) {
             for (int u = 0; u < edgeList.size(); u++) {
                 Edge edge = edgeList.get(u);
-                if (distances[edge.getFrom()] != Integer.MAX_VALUE && distances[edge.getFrom()] + edge.getWeight() < distances[edge.getTo()]){
+                if (distances[edge.getFrom()] != Double.POSITIVE_INFINITY && distances[edge.getFrom()] + edge.getWeight() < distances[edge.getTo()]){
                     distances[edge.getTo()] = distances[edge.getFrom()] + edge.getWeight();
+                    predecessors[edge.getTo()] = edge.getFrom();
                 }
             }
         }
@@ -32,31 +30,23 @@ public class bellmanford {
          * can find a better path beyond the optimal solution.
         */
 
-        for (int i = 0; i < n - 1; i++) {
-            for (int u = 0; u < edgeList.size(); u++) {
-                Edge edge = edgeList.get(u);
-                int v = edge.getTo();
-                int w = edge.getWeight();
-                if (distances[edge.getFrom()] != Integer.MAX_VALUE && distances[edge.getFrom()] + w < distances[v]){
-                    distances[edge.getTo()] = Integer.MIN_VALUE;
-                }
+        for (int u = 0; u < edgeList.size(); u++) {
+            Edge edge = edgeList.get(u);
+            if (distances[edge.getFrom()] != Double.POSITIVE_INFINITY && distances[edge.getFrom()] + edge.getWeight() < distances[edge.getTo()]){
+                distances[edge.getTo()] = Double.NEGATIVE_INFINITY;
             }
         }
-        final_distances = distances;
 
         //return if there is a negative cycle
         for (int i = 0; i < n; i++) {
-            if (distances[i] == Integer.MIN_VALUE) {
+            if (distances[i] == Double.NEGATIVE_INFINITY) {
                 negative_cycle = true;
             }
         }
     }
-
-    public boolean get_negative_cycle(){
+    
+    public boolean getNegativeCycle(){
         return negative_cycle;
     }
 
-    public int[] get_shortest_path() {
-        return final_distances;
-    }
 }
