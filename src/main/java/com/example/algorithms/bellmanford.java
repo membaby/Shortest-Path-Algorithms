@@ -46,7 +46,7 @@ public class bellmanford {
     }
     
     public boolean getNegativeCycle(){
-        return negative_cycle;
+        return !negative_cycle;
     }
 
 }

@@ -84,7 +84,6 @@ public class DijkstraTest {
 		double[] costs = new double[graph.size()];
 		int[] preds = new int[graph.size()];
 		graph.run_dijkstra(0, costs, preds);
-		//Check path to node 1 and 2 doesn't include loops. Currently can't do it because djikstra doesn't return paths.
 		assertEquals(0, preds[1]);
 		assertEquals(1, preds[2]);
 	}
@@ -97,7 +96,6 @@ public class DijkstraTest {
 		double[] costs = new double[graph.size()];
 		int[] preds = new int[graph.size()];
 		graph.run_dijkstra(0, costs, preds);
-		//Check path to node 1 and 2 doesn't include loops. Currently can't do it because djikstra doesn't return paths.
 		assertEquals(0, preds[1]);
 		assertEquals(1, preds[2]);	
 	}
