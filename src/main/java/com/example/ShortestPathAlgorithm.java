@@ -37,16 +37,16 @@ public class ShortestPathAlgorithm {
 				msg = main_menu();
 				break;
 				case PathSrcAlgo:
-				msg = path_from_source_choose_algorithm();
+				msg = choose_algorithm(Messages.PathSrcOpt);
 				break;
 				case PathSrcOpt:
 				msg = path_from_source_options();
 				break;
 				case PathAllAlgo:
-				// msg = main_menu();
+				msg = choose_algorithm(Messages.PathAllOpt);
 				break;
 				case PathAllOpt:
-				// msg = main_menu();
+				msg = path_to_all_options();
 				break;
 				case NegCycle:
 				msg = find_neg_cycles();
@@ -100,7 +100,7 @@ public class ShortestPathAlgorithm {
 		return msg;
 	}
 
-	static Messages path_from_source_choose_algorithm()
+	static Messages choose_algorithm(Messages nextMenu)
 	{
 		System.out.println("Choose an algorithm:");
 		System.out.println("1: Dijkstra");
@@ -114,15 +114,15 @@ public class ShortestPathAlgorithm {
 		{
 			case 1:
 			chosenAlgo = Algorithm.Dij;
-			msg = Messages.PathSrcOpt;
+			msg = nextMenu;
 			break;
 			case 2:
 			chosenAlgo = Algorithm.Bellman;
-			msg = Messages.PathSrcOpt;
+			msg = nextMenu;
 			break;
 			case 3:
 			chosenAlgo = Algorithm.Floyd;
-			msg = Messages.PathSrcOpt;
+			msg = nextMenu;
 			break;
 			case 4:
 			msg = Messages.Main;
@@ -186,10 +186,10 @@ public class ShortestPathAlgorithm {
 			switch(choice)
 			{
 				case 1:
-				path_to_node_src(source);
+				path_to_node(source);
 				break;
 				case 2:
-				cost_to_node_src(source);
+				cost_to_node(source);
 				break;
 				case 3:
 				msg = Messages.PathSrcOpt;
@@ -204,42 +204,19 @@ public class ShortestPathAlgorithm {
 		return msg;
 	}
 	
-	static void path_to_node_src(int source)
+	static void path_to_node(int source)
 	{
-		System.out.print("Choose destination between 0 and "+ (graph.size()-1) + ": ");
+		System.out.print("Choose destination within 0 and "+ (graph.size()-1) + ": ");
 		int dest = scn.nextInt();
-		switch(chosenAlgo)
+		int current;
+		if(chosenAlgo != Algorithm.Floyd)
 		{
-			case Dij:
-			case Bellman:
 			if (Double.isInfinite(costsArr[dest]))
 			{
 				System.out.println("No path exists.");
 				System.out.println("\n");
 				return;
 			}
-			break;
-			case Floyd:
-			if (costsMat[source][dest] == Integer.MAX_VALUE)
-			{
-				System.out.println("No path exists.");
-				System.out.println("\n");
-				return;
-			}
-			break;
-		}
-		int current;;
-		if (chosenAlgo == Algorithm.Floyd)
-		{
-			current = source;
-			while(current != dest)
-			{
-				System.out.print(current+ "->");
-				current = succMat[current][dest];
-			}
-		}
-		else
-		{
 			current = dest;
 			while (current != source)
 			{
@@ -247,13 +224,29 @@ public class ShortestPathAlgorithm {
 				current = predsArr[current];
 			}
 		}
+		else
+		{
+			if (costsMat[source][dest] == Integer.MAX_VALUE)
+			{
+				System.out.println("No path exists.");
+				System.out.println("\n");
+				return;
+			}
+			current = source;
+			while(current != dest)
+			{
+				System.out.print(current+ "->");
+				current = succMat[current][dest];
+			}
+		}
+		
 		System.out.println(current);
 		System.out.println("\n");
 	}	
 	
-	static void cost_to_node_src(int source)
+	static void cost_to_node(int source)
 	{
-		System.out.println("Choose destination between 0 and "+ (graph.size()-1) + ": ");
+		System.out.println("Choose destination within 0 and "+ (graph.size()-1) + ": ");
 		int dest = scn.nextInt();
 		if (chosenAlgo == Algorithm.Floyd)
 		{
@@ -267,16 +260,134 @@ public class ShortestPathAlgorithm {
 	}	
 
 
-	static Messages path_to_all_choose_algorithm()
-	{
+	// static Messages path_to_all_choose_algorithm()
+	// {
 
-		return Messages.Main;
-	}
+	// 	return Messages.Main;
+	// }
 
 	static Messages path_to_all_options()
 	{
+		if (chosenAlgo == Algorithm.Floyd)
+		{
+			costsMat = new Integer[graph.size()][graph.size()];	
+			succMat = new int[graph.size()][graph.size()];
+			graph.run_floyd_warshall(costsMat, succMat);
+		}
+		Messages msg = null;
+		while(msg == null)
+		{
+			System.out.println("1 : Show path from x to y");
+			System.out.println("2 : Show cost of path from x to y");
+			System.out.println("3 : Main menu.");
+			System.out.print("Your choice: ");
+			int choice = scn.nextInt();
+			switch(choice)
+			{
+				case 1:
+				path_between_pair();
+				break;
+				case 2:
+				cost_between_pair();
+				break;
+				case 3:
+				msg = Messages.Main;
+				break;
+			}
+			
+		}
+		
+		System.out.println("\n\n");
+		return msg;
+	}
 
-		return Messages.Main;
+
+	static void path_between_pair()
+	{
+		System.out.print("Enter x and y within 0 and " + (graph.size()-1) + ": ");
+		int src = scn.nextInt(), dest = scn.nextInt();
+		switch(chosenAlgo) 
+		{
+			case Dij:
+			costsArr = new double[graph.size()];
+			predsArr = new int[graph.size()];
+			graph.run_dijkstra(src, costsArr, predsArr);
+			
+			break;
+			case Bellman:
+			costsArr = new double[graph.size()];
+			predsArr = new int[graph.size()];
+			graph.run_bellman_ford(src, costsArr, predsArr);
+			break;
+			case Floyd:	
+			break;
+		}
+		int current;
+		if(chosenAlgo != Algorithm.Floyd)
+		{
+			if (Double.isInfinite(costsArr[dest]))
+			{
+				System.out.println("No path exists.");
+				System.out.println("\n");
+				return;
+			}
+			current = dest;
+			while (current != src)
+			{
+				System.out.print(current+"<-");
+				current = predsArr[current];
+			}
+		}
+		else
+		{
+			if (costsMat[src][dest] == Integer.MAX_VALUE)
+			{
+				System.out.println("No path exists.");
+				System.out.println("\n");
+				return;
+			}
+			current = src;
+			while(current != dest)
+			{
+				System.out.print(current+ "->");
+				current = succMat[current][dest];
+			}
+		}
+		
+		System.out.println(current);
+		System.out.println("\n");
+
+	}
+
+	static void cost_between_pair()
+	{
+		System.out.print("Enter x and y within 0 and " + (graph.size()-1) + ": ");
+		int src = scn.nextInt(), dest = scn.nextInt();
+		switch(chosenAlgo) 
+		{
+			case Dij:
+			costsArr = new double[graph.size()];
+			predsArr = new int[graph.size()];
+			graph.run_dijkstra(src, costsArr, predsArr);
+			
+			break;
+			case Bellman:
+			costsArr = new double[graph.size()];
+			predsArr = new int[graph.size()];
+			graph.run_bellman_ford(src, costsArr, predsArr);
+			break;
+			case Floyd:	
+			break;
+		}
+		if (chosenAlgo == Algorithm.Floyd)
+		{
+			if (costsMat[src][dest] == Integer.MAX_VALUE) System.out.println("infinity");
+		}
+		else
+		{
+			System.out.println(costsArr[dest]);
+		}
+		System.out.println("\n");
 	}
 
 	static Messages find_neg_cycles()
