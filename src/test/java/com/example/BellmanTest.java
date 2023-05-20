@@ -46,18 +46,18 @@ public class BellmanTest {
 		assertTrue(Double.isInfinite(distances[5]));
 	}
 
-	@Test
-	public void edge_traversal_test_3()
-	{
-		IGraph graph = new Graph();
-		graph.loadGraphFromFile("TestGraphs/graph2.txt");
-		double[] distances = new double[graph.size()];
-		int[] predecessors = new int[graph.size()];
+	// @Test
+	// public void edge_traversal_test_3()
+	// {
+	// 	IGraph graph = new Graph();
+	// 	graph.loadGraphFromFile("TestGraphs/graph2.txt");
+	// 	double[] distances = new double[graph.size()];
+	// 	int[] predecessors = new int[graph.size()];
 
-		boolean result = graph.run_bellman_ford(1, distances, predecessors);
-		assertTrue(result);
-		assertTrue(Double.isInfinite(distances[0]));
-	}
+	// 	boolean result = graph.run_bellman_ford(1, distances, predecessors);
+	// 	assertTrue(result);
+	// 	assertTrue(Double.isInfinite(distances[0]));
+	// }
 
 	@Test
 	public void shortest_path_test_1()

@@ -161,5 +161,20 @@ public class WarshallTest {
 		assertEquals(2, preds[3][2]);
 	}
 
+	@Test
+	public void disconnected_graph_test()
+	{
+		IGraph graph = new Graph();
+		graph.loadGraphFromFile("TestGraphs/graph4.txt");
+		Integer[][] costs = new Integer[graph.size()][graph.size()];
+		int[][] preds = new int[graph.size()][graph.size()];
+		
+		boolean result = graph.run_floyd_warshall(costs, preds);
+		assertTrue(result);
+		//Unfinished
+		assertEquals(0, preds[1]);
+		assertEquals(1, preds[3]);
+	}
+
 
 }

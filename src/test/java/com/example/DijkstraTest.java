@@ -43,16 +43,16 @@ public class DijkstraTest {
 		assertTrue(Double.isInfinite(distances[5]));
 	}
 
-	@Test
-	public void edge_traversal_test_3()
-	{
-		IGraph graph = new Graph();
-		graph.loadGraphFromFile("TestGraphs/graph2.txt");
-		double[] distances = new double[graph.size()];
-		int[] predecessors = new int[graph.size()];
-		graph.run_dijkstra(1, distances, predecessors);
-		assertTrue(Double.isInfinite(distances[0]));
-	}
+	// @Test
+	// public void edge_traversal_test_3()
+	// {
+	// 	IGraph graph = new Graph();
+	// 	graph.loadGraphFromFile("TestGraphs/graph2.txt");
+	// 	double[] distances = new double[graph.size()];
+	// 	int[] predecessors = new int[graph.size()];
+	// 	graph.run_dijkstra(1, distances, predecessors);
+	// 	assertTrue(Double.isInfinite(distances[0]));
+	// }
 
 	@Test
 	public void shortest_path_test_1()

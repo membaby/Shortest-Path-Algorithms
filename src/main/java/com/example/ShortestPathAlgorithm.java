@@ -382,6 +382,7 @@ public class ShortestPathAlgorithm {
 		if (chosenAlgo == Algorithm.Floyd)
 		{
 			if (costsMat[src][dest] == Integer.MAX_VALUE) System.out.println("infinity");
+			else System.out.println(costsMat[src][dest]);
 		}
 		else
 		{

@@ -13,7 +13,7 @@ public class GraphGenerator
 
 	public static void main(String[] args) 
 	{
-		generate(50, 0.75f);
+		generate(100, 0.75f);
 	}
 
 
